@@ -11,27 +11,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author ESDAIRI
  */
 @Entity
-public class Domain implements Serializable {
+public class Domaine implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    @ManyToOne
+    @OneToMany(mappedBy = "domain")
     private List<SubDomain> subDomains;
 
-    
-    
-    
-    
     public List<SubDomain> getSubDomains() {
         return subDomains;
     }
@@ -39,9 +35,7 @@ public class Domain implements Serializable {
     public void setSubDomains(List<SubDomain> subDomains) {
         this.subDomains = subDomains;
     }
-    
-    
-    
+
     public String getName() {
         return name;
     }
@@ -49,8 +43,6 @@ public class Domain implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-    
-    
 
     public Long getId() {
         return id;
@@ -70,10 +62,10 @@ public class Domain implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Domain)) {
+        if (!(object instanceof Domaine)) {
             return false;
         }
-        Domain other = (Domain) object;
+        Domaine other = (Domaine) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -84,5 +76,5 @@ public class Domain implements Serializable {
     public String toString() {
         return "bean.Domain[ id=" + id + " ]";
     }
-    
+
 }
