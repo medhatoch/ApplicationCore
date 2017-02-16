@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProvidedInterfaceCreateDlg" widgetVar="ProvidedInterfaceCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateProvidedInterfaceTitle}">
+            <h:form id="ProvidedInterfaceCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{providedInterfaceController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateProvidedInterfaceLabel_component}" for="component" />
+                        <p:selectOneMenu id="component" value="#{providedInterfaceController.selected.component}" >
+                            <f:selectItems value="#{componentController.itemsAvailableSelectOne}"
+                                           var="componentItem"
+                                           itemValue="#{componentItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateProvidedInterfaceLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{providedInterfaceController.selected.name}" title="#{bundle.CreateProvidedInterfaceTitle_name}" />
+                        <p:outputLabel value="#{bundle.CreateProvidedInterfaceLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{providedInterfaceController.selected.id}" title="#{bundle.CreateProvidedInterfaceTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{providedInterfaceController.create}" value="#{bundle.Save}" update="display,:ProvidedInterfaceListForm:datalist,:growl" oncomplete="handleSubmit(args,'ProvidedInterfaceCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ProvidedInterfaceCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

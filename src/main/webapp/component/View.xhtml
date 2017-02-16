@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ComponentViewDlg" widgetVar="ComponentViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewComponentTitle}">
+            <h:form id="ComponentViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{componentController.selected != null}">
+                        <h:outputText value="#{bundle.ViewComponentLabel_subDomain}"/>
+                        <h:outputText value="#{componentController.selected.subDomain}" title="#{bundle.ViewComponentTitle_subDomain}"/>
+                        <h:outputText value="#{bundle.ViewComponentLabel_providedInterface}"/>
+                        <h:outputText value="#{componentController.selected.providedInterface}" title="#{bundle.ViewComponentTitle_providedInterface}"/>
+                        <h:outputText value="#{bundle.ViewComponentLabel_name}"/>
+                        <h:outputText value="#{componentController.selected.name}" title="#{bundle.ViewComponentTitle_name}"/>
+                        <h:outputText value="#{bundle.ViewComponentLabel_id}"/>
+                        <h:outputText value="#{componentController.selected.id}" title="#{bundle.ViewComponentTitle_id}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ComponentViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

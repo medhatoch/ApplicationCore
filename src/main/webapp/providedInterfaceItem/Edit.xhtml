@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProvidedInterfaceItemEditDlg" widgetVar="ProvidedInterfaceItemEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditProvidedInterfaceItemTitle}">
+            <h:form id="ProvidedInterfaceItemEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{providedInterfaceItemController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditProvidedInterfaceItemLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{providedInterfaceItemController.selected.name}" title="#{bundle.EditProvidedInterfaceItemTitle_name}" />
+                        <p:outputLabel value="#{bundle.EditProvidedInterfaceItemLabel_providedInterface}" for="providedInterface" />
+                        <p:selectOneMenu id="providedInterface" value="#{providedInterfaceItemController.selected.providedInterface}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{providedInterfaceController.itemsAvailableSelectOne}"
+                                           var="providedInterfaceItem"
+                                           itemValue="#{providedInterfaceItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditProvidedInterfaceItemLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{providedInterfaceItemController.selected.id}" title="#{bundle.EditProvidedInterfaceItemTitle_id}" />
+                        <p:outputLabel value="#{bundle.EditProvidedInterfaceItemLabel_output}" for="output" />
+                        <p:selectOneMenu id="output" value="#{providedInterfaceItemController.selected.output}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{outputController.itemsAvailableSelectOne}"
+                                           var="outputItem"
+                                           itemValue="#{outputItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{providedInterfaceItemController.update}" value="#{bundle.Save}" update="display,:ProvidedInterfaceItemListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ProvidedInterfaceItemEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ProvidedInterfaceItemEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
