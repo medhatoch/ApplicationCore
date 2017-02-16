@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
@@ -25,8 +26,8 @@ public class SubDomain implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    @OneToMany
-    private Domain domain;
+    @ManyToOne
+    private Domaine domain;
     @OneToMany(mappedBy = "subDomain")
     private List<Component> components;
 
@@ -38,11 +39,11 @@ public class SubDomain implements Serializable {
         this.components = components;
     }
 
-    public Domain getDomain() {
+    public Domaine getDomain() {
         return domain;
     }
 
-    public void setDomain(Domain domain) {
+    public void setDomain(Domaine domain) {
         this.domain = domain;
     }
 

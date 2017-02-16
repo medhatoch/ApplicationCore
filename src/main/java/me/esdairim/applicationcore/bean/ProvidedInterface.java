@@ -26,7 +26,7 @@ public class ProvidedInterface implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    @OneToOne(mappedBy = "providedInterface")
+    @OneToOne
     private Component component;
     @OneToMany(mappedBy = "providedInterface")
     private List<ProvidedInterfaceItem> providedInterfaceItems;
